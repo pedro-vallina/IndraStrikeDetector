@@ -7,11 +7,15 @@ project = rf.workspace("maradys-project-7hybh").project("aircraft-surface-defect
 version = project.version(3)
 dataset = version.download("yolov11")
 
-model = YOLO('yolo26n.pt')
+def train():
+    model = YOLO('yolo26n.pt')
 
-model.train(data='/content/Aircraft-Surface-Defect-Detection-3/data.yaml',
-            epochs=200,
-            imgsz=640,
-            patience=10,
-            batch=128,
-            workers=8)
+    model.train(data='Aircraft-Surface-Defect-Detection-3/data.yaml',
+                epochs=150,
+                imgsz=640,
+                patience=10,
+                batch=32,
+                workers=8)
+
+if __name__ == "__main__":
+    train()
